@@ -10,8 +10,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 
-import java.util.stream.Stream;
-
 public class CustomCow implements Listener {
 
     private CustomEntityProperties properties = new CustomEntityProperties();
@@ -38,7 +36,7 @@ public class CustomCow implements Listener {
         Entity entity = event.getEntity();
 
         if (entity == cow) {
-          ;
+            entity.getLocation().getWorld();
         }
     }
 

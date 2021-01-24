@@ -1,11 +1,7 @@
 package com.elwarriorcito.plugins.zoocraft.mobs.api;
 
-import com.elwarriorcito.plugins.zoocraft.core.Enums.ConfigEntityType;
-import com.elwarriorcito.plugins.zoocraft.core.Enums.DataEntityType;
 import com.elwarriorcito.plugins.zoocraft.core.ZooCraft;
-import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
-import sun.security.krb5.Config;
 
 import java.util.List;
 

@@ -1,7 +1,6 @@
 package com.elwarriorcito.plugins.zoocraft.mobs.api;
 
 
-import com.elwarriorcito.plugins.zoocraft.core.Enums.ConfigEntityType;
 import com.elwarriorcito.plugins.zoocraft.core.ZooCraft;
 import org.bukkit.inventory.ItemStack;
 
