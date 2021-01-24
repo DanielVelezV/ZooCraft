@@ -1,7 +1,8 @@
 package com.elwarriorcito.plugins.zoocraft.core;
 
-import com.elwarriorcito.plugins.zoocraft.Commands.CowSpawnCommand;
+import com.elwarriorcito.plugins.zoocraft.core.Events.CropsHandler;
 import com.elwarriorcito.plugins.zoocraft.mobs.CustomCow;
+import org.bukkit.material.Crops;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class ZooCraft extends JavaPlugin {
@@ -9,8 +10,7 @@ public final class ZooCraft extends JavaPlugin {
     @Override
     public void onEnable() {
         // Plugin startup logic
-        getCommand("spawnCow").setExecutor(new CowSpawnCommand());
-
+        getServer().getPluginManager().registerEvents(new CropsHandler(), this);
         getServer().getPluginManager().registerEvents(new CustomCow(), this);
 
     }
