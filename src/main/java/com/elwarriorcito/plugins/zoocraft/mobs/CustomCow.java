@@ -1,24 +1,30 @@
-package com.elwarriorcito.plugins.zoocraft.Mobs;
+package com.elwarriorcito.plugins.zoocraft.mobs;
 
+import com.elwarriorcito.plugins.zoocraft.core.ZooCraft;
+import com.elwarriorcito.plugins.zoocraft.mobs.api.CustomEntityProperties;
+import com.elwarriorcito.plugins.zoocraft.mobs.api.CustomMob;
 import org.bukkit.entity.Cow;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
-import com.elwarriorcito.plugins.zoocraft.Mobs.Api.CustomEntityProperties;
+
+import java.util.stream.Stream;
 
 public class CustomCow implements Listener {
 
     private CustomEntityProperties properties = new CustomEntityProperties();
-
+    private CustomMob customMob = new CustomMob();
     private Cow cow;
 
     @SuppressWarnings("unused")
-    public void summonCow(Player player, String customName, double health, String breed) {
+    public void summonCow(Player player, String customName, String breed) {
         cow = player.getWorld().spawn(player.getLocation(), Cow.class);
 
-        cow.setHealth(health);
+        customMob.assignID();
+
+        cow.setHealth(ZooCraft.MobConfig.getDouble("Cow.Default Health"));
         cow.setRemoveWhenFarAway(false);
         cow.setCustomName(customName + "[" + properties.getLevel() + "]");
         cow.setCustomNameVisible(true);
@@ -32,7 +38,7 @@ public class CustomCow implements Listener {
         Entity entity = event.getEntity();
 
         if (entity == cow) {
-            entity.getLocation().getWorld();
+          ;
         }
     }
 

@@ -1,12 +1,23 @@
-package com.elwarriorcito.plugins.zoocraft.Mobs.Api;
+package com.elwarriorcito.plugins.zoocraft.mobs.api;
 
-import javax.swing.text.html.parser.Entity;
+
+import com.elwarriorcito.plugins.zoocraft.core.Enums.ConfigEntityType;
+import com.elwarriorcito.plugins.zoocraft.core.ZooCraft;
+import org.bukkit.inventory.ItemStack;
 
 public class CustomMob {
 
-    private CustomEntityProperties properties = new CustomEntityProperties();
+    private int ID  = (int) Math.random();
+    ItemStack[] is;
 
-    public void dropItems(Entity entity) {
+    //need to add item drops
+    public void dropItems(ConfigEntityType entityType) {
+        for (ItemStack itemStack: is  ) {
 
+        }
+    }
+
+    public void assignID() {
+        ZooCraft.MobData.set("ID", ID);
     }
 }
