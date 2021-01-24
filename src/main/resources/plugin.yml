@@ -4,3 +4,6 @@ main: com.elwarriorcito.plugins.zoocraft.core.ZooCraft
 api-version: 1.16
 authors: [ ElWarriorcito, AlPaSa, ProGamer ]
 description: A Zoo plugin for a Minecraft server
+commands:
+  spawnCow:
+    aliases: [sc, spawncow]
