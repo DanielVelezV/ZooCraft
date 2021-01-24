@@ -2,16 +2,16 @@ package com.elwarriorcito.plugins.zoocraft.core;
 
 import com.elwarriorcito.plugins.zoocraft.commands.GetGoldenCrop;
 import com.elwarriorcito.plugins.zoocraft.commands.GetPlantedCrops;
+import com.elwarriorcito.plugins.zoocraft.core.models.CropSuperModel;
 import com.elwarriorcito.plugins.zoocraft.mobs.CustomCow;
 import com.elwarriorcito.plugins.zoocraft.core.events.CropsHandler;
-import com.elwarriorcito.plugins.zoocraft.core.models.CropModel;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
 
 public final class ZooCraft extends JavaPlugin {
 
-    public static ArrayList<CropModel> plantedCrops;
+    public static ArrayList<CropSuperModel> plantedCrops;
 
 
 

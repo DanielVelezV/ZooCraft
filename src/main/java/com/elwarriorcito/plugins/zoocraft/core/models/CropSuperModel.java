@@ -1,7 +1,7 @@
 package com.elwarriorcito.plugins.zoocraft.core.models;
 
-import com.elwarriorcito.plugins.zoocraft.core.enums.RarityEnum;
 import com.elwarriorcito.plugins.zoocraft.core.ZooCraft;
+import com.elwarriorcito.plugins.zoocraft.core.enums.RarityEnum;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import net.minecraft.server.v1_16_R3.BlockPosition;
@@ -11,6 +11,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
 import org.bukkit.block.Block;
+import org.bukkit.block.data.type.Bed;
 import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -18,7 +19,7 @@ import org.bukkit.inventory.ItemStack;
 import java.util.Random;
 import java.util.UUID;
 
-public class CropModel {
+public abstract class CropSuperModel {
 
     public int GrowTime;
     public RarityEnum Rarity;
@@ -28,33 +29,44 @@ public class CropModel {
     public ZooCraft Main;
     public HologramModel holo;
     public int remainingGrowTime;
-    public Material DropType;
+    public Material dropType;
+    public Particle particleEffect;
 
+    public String skinUuid;
     public  int particleTaskId;
     public int growTimeTaskId;
 
-
-
-    public CropModel(String Name, RarityEnum Rarity, int Growtime, ZooCraft main, Material DropType){
+    public CropSuperModel(Material DropType, Integer GrowTime, String Name,
+                          String skinUUI, RarityEnum Rarity, Particle particleEffect, ZooCraft Main){
+        this.dropType = DropType;
+        this.GrowTime = GrowTime;
         this.Name = Name;
+        this.skinUuid = skinUUI;
         this.Rarity = Rarity;
-        this.GrowTime = Growtime;
-        this.Main = main;
+        this.particleEffect = particleEffect;
+        this.Main = Main;
+
         remainingGrowTime = GrowTime;
-        this.DropType = DropType;
+
     }
 
-    public void spawnCrop(Location loc, Player Owner){
-        this.location = loc;
+    public void spawnCrop(Location location, Player Owner, Boolean playParticles){
+        this.location = location;
         this.Owner = Owner;
+        setHeadLocation();
+        setHolo();
+        startGrowTime();
+        if (playParticles)
+            playParticles();
+    }
 
-
+    public void setHeadLocation(){
         //Set the block state to A skull with skin so the skin is not lost when logged out
-        Block b = loc.add(0, 1, 0).getBlock();
+        Block b = location.add(0, 1, 0).getBlock();
         b.setType(Material.PLAYER_HEAD);
 
         GameProfile profile = new GameProfile(UUID.randomUUID(), null);
-        profile.getProperties().put("textures", new Property("textures", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTAxMjRhYzhkMzNmZTUxMzljOGRiMGZlNDUxMmZiMTY3NmQ5NWQzNjk4ZTVkZjU4Yjc2YjQxNTgzOGVhZWIifX19"));
+        profile.getProperties().put("textures", new Property("textures", skinUuid));
         TileEntitySkull skullTile = (TileEntitySkull)
                 ((CraftWorld) b.getWorld()).getHandle().getTileEntity(
                         new BlockPosition(b.getX(), b.getY(), b.getZ()));
@@ -62,38 +74,14 @@ public class CropModel {
             skullTile.setGameProfile(profile);
         }
         b.getState().update(true);
-
-        //loc.getWorld().getBlockAt(loc.add(0, 1, 0)).setType(Material.PLAYER_HEAD);
-
-        loc.getWorld().getBlockAt(loc);
-
-        particleTaskId = Bukkit.getScheduler().scheduleSyncRepeatingTask(Main, new Runnable() {
-            @Override
-            public void run() {
-                loc.getWorld().spawnParticle(Particle.HEART, loc.getX(), loc.getY(), loc.getZ(), 1);
-                loc.getWorld().spawnParticle(Particle.HEART, loc.getX() + 0.5, loc.getY(), loc.getZ() + 0.5, 1);
-                loc.getWorld().spawnParticle(Particle.HEART, loc.getX() + 1, loc.getY(), loc.getZ() + 1, 1);
-                loc.getWorld().spawnParticle(Particle.HEART, loc.getX() + 1, loc.getY(), loc.getZ() + 0.5, 1);
-                loc.getWorld().spawnParticle(Particle.HEART, loc.getX(), loc.getY(), loc.getZ() + 1, 1);
-            }
-        }, 0L, 40L );
-
+    }
+    public void setHolo(){
         holo = new HologramModel();
-        Location holoLocation = loc.clone();
-
+        Location holoLocation = location.clone();
         holo.createLine(holoLocation.add(0.5, -0.2, 0.5), Name);
-        holo.addLine("&2GrowTime: ");
-        startGrowTimeCountDown();
-
+        holo.addLine("Growtime");
     }
-
-    public void stopParticles(){
-            Bukkit.getScheduler().cancelTasks(Main);
-            particleTaskId = 0;
-            growTimeTaskId = 0;
-    }
-
-    public void startGrowTimeCountDown() {
+    public void startGrowTime(){
         Random rnd = new Random();
         if (holo.getLine(2) != null) {
             growTimeTaskId = Bukkit.getScheduler().scheduleSyncRepeatingTask(Main, new Runnable() {
@@ -103,15 +91,14 @@ public class CropModel {
                     remainingGrowTime--;
                     if (remainingGrowTime == 0){
                         remainingGrowTime = GrowTime;
-                        location.getWorld().dropItem(location, new ItemStack(DropType, rnd.nextInt(5)));
+                        dropWhenGrowTimeDone();
                     }
                 }
             }, 0L, 20L);
 
         }
-
     }
-
+    public abstract void dropWhenGrowTimeDone();
     public void removeCrop(){
         Bukkit.getScheduler().cancelTask(particleTaskId);
         Bukkit.getScheduler().cancelTask(growTimeTaskId);
@@ -119,4 +106,7 @@ public class CropModel {
         growTimeTaskId = 0;
         holo.removeHolo();
     }
+    public abstract void playParticles();
+
+
 }
