@@ -43,6 +43,12 @@ public class CropModel {
             }
         }, 5L, 10L );
 
+        HologramModel holo = new HologramModel();
+        Location holoLocation = loc.clone();
+        holo.createLine(holoLocation.add(0.5, -0.5, 0.5), Name);
+        holo.addLine("&2GrowTime: " + GrowTime);
+        holo.addLine("&4Rarity: ");
+
     }
 
     public void stopParticles(){

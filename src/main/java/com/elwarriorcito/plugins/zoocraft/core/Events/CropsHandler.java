@@ -22,7 +22,7 @@ public class CropsHandler implements Listener {
     @EventHandler
     public void onPlayerPlantCrop(PlayerInteractEvent e){
         Player p = e.getPlayer(); //Get the player
-        CropModel crop = new CropModel("Wheat Golden Crop", RarityEnum.Common, 20, Main);
+        CropModel crop = new CropModel("&6&lWheat Golden Crop", RarityEnum.Common, 20, Main);
         if (e.getHand() == EquipmentSlot.OFF_HAND) return; //This is to avoid double calls
 
         if (e.getAction() == Action.RIGHT_CLICK_BLOCK && //If its clicking a Block
