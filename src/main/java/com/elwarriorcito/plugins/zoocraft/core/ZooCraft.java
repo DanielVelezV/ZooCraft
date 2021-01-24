@@ -2,12 +2,18 @@ package com.elwarriorcito.plugins.zoocraft.core;
 
 import com.elwarriorcito.plugins.zoocraft.commands.GetGoldenCrop;
 import com.elwarriorcito.plugins.zoocraft.commands.GetPlantedCrops;
+<<<<<<< HEAD
 import com.elwarriorcito.plugins.zoocraft.core.events.CropsHandler;
 import com.elwarriorcito.plugins.zoocraft.core.models.CropModel;
 import com.elwarriorcito.plugins.zoocraft.mobs.CustomCow;
 import com.elwarriorcito.plugins.zoocraft.mobs.api.ConfigEntityType;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+=======
+import com.elwarriorcito.plugins.zoocraft.core.models.CropSuperModel;
+import com.elwarriorcito.plugins.zoocraft.mobs.CustomCow;
+import com.elwarriorcito.plugins.zoocraft.core.events.CropsHandler;
+>>>>>>> e8c3728653310fc125cffd66576f05e5547ecb8a
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -17,7 +23,7 @@ import java.util.ArrayList;
 
 public final class ZooCraft extends JavaPlugin {
 
-    public static ArrayList<CropModel> plantedCrops;
+    public static ArrayList<CropSuperModel> plantedCrops;
 
 
 
@@ -45,6 +51,7 @@ public final class ZooCraft extends JavaPlugin {
 
         getServer().getPluginManager().registerEvents(new CropsHandler(this), this);
         getServer().getPluginManager().registerEvents(new CustomCow(), this);
+<<<<<<< HEAD
         getCommand("getGoldCrop").setExecutor(new GetGoldenCrop());
         getCommand("getCropInfo").setExecutor(new GetPlantedCrops());
 
@@ -62,6 +69,10 @@ public final class ZooCraft extends JavaPlugin {
     public void onDisable() {
         saveYmlFile(MobConfig, MobConfigYML);
         saveYmlFile(MobData, MobDataYML);
+=======
+        getCommand("getGoldCrop").setExecutor(new GetGoldenCrop()); //This will give you the Crop Item
+        getCommand("getCropInfo").setExecutor(new GetPlantedCrops()); //This will give you info about all planted crops
+>>>>>>> e8c3728653310fc125cffd66576f05e5547ecb8a
     }
 
 
