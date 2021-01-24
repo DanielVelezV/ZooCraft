@@ -1,6 +1,6 @@
-package com.elwarriorcito.plugins.zoocraft.Commands;
+package com.elwarriorcito.plugins.zoocraft.commands;
 
-import com.elwarriorcito.plugins.zoocraft.Items.ZooItems;
+import com.elwarriorcito.plugins.zoocraft.items.ZooItems;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

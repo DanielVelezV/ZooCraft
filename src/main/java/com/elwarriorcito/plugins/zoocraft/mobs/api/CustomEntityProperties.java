@@ -1,4 +1,4 @@
-package com.elwarriorcito.plugins.zoocraft.Mobs.Api;
+package com.elwarriorcito.plugins.zoocraft.mobs.api;
 
 import org.bukkit.inventory.ItemStack;
 

@@ -1,10 +1,9 @@
-package com.elwarriorcito.plugins.zoocraft.Items;
+package com.elwarriorcito.plugins.zoocraft.items;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.entity.Item;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
@@ -33,6 +32,8 @@ public class ZooItems {
 
         return item;
     }
+
+
 
 
 }

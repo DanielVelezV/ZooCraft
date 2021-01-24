@@ -1,8 +1,8 @@
-package com.elwarriorcito.plugins.zoocraft.core.Events;
+package com.elwarriorcito.plugins.zoocraft.core.events;
 
-import com.elwarriorcito.plugins.zoocraft.Items.ZooItems;
-import com.elwarriorcito.plugins.zoocraft.core.Enums.RarityEnum;
-import com.elwarriorcito.plugins.zoocraft.core.Models.CropModel;
+import com.elwarriorcito.plugins.zoocraft.items.ZooItems;
+import com.elwarriorcito.plugins.zoocraft.core.enums.RarityEnum;
+import com.elwarriorcito.plugins.zoocraft.core.models.CropModel;
 import com.elwarriorcito.plugins.zoocraft.core.ZooCraft;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 
@@ -35,6 +36,7 @@ public class CropsHandler implements Listener {
 
 
             crop.spawnCrop(clickedLocation, p);
+            ZooCraft.plantedCrops.add(crop);
         }
         if (e.getAction() == Action.RIGHT_CLICK_BLOCK &&
                 p.getInventory().getItemInMainHand().getType().equals(Material.REDSTONE_BLOCK)){
@@ -42,4 +44,29 @@ public class CropsHandler implements Listener {
         }
 
     }
+
+    @EventHandler
+    public void onPlayerRemoveCrop(BlockBreakEvent e){
+        Location loc = e.getBlock().getLocation();
+
+        if (ZooCraft.plantedCrops.stream().anyMatch(item -> (item.location.getX() == loc.getX() &&
+                item.location.getY() == loc.getY() &&
+                item.location.getZ() == loc.getZ()))){
+
+            CropModel crop = ZooCraft.plantedCrops.stream().filter(item -> (item.location.getX() == loc.getX() &&
+                    item.location.getY() == loc.getY() &&
+                    item.location.getZ() == loc.getZ())).findFirst().get();
+
+            if (crop.Owner != null)
+            {
+                crop.Owner.sendMessage("Someone destroyed your crop");
+                crop.removeCrop();
+                ZooCraft.plantedCrops.remove(crop);
+            }
+
+
+        }
+
+    }
+
 }

@@ -1,4 +1,4 @@
-package com.elwarriorcito.plugins.zoocraft.Mobs.Api;
+package com.elwarriorcito.plugins.zoocraft.mobs.api;
 
 import javax.swing.text.html.parser.Entity;
 

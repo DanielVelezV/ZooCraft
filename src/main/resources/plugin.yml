@@ -7,3 +7,7 @@ description: A Zoo plugin for a Minecraft server
 commands:
   getGoldCrop:
     aliases: [getcrop, items, goldenCrop, gc]
+  getCropInfo:
+    aliases: [cropInfo, plantedCrops, pc, ci]
+  getTaskIdInfo:
+    aliases: [taskid, cropid, infoid]
