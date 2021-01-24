@@ -9,5 +9,3 @@ commands:
     aliases: [getcrop, items, goldenCrop, gc]
   getCropInfo:
     aliases: [cropInfo, plantedCrops, pc, ci]
-  getTaskIdInfo:
-    aliases: [taskid, cropid, infoid]
