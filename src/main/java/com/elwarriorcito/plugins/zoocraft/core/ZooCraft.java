@@ -1,4 +1,4 @@
-package com.elwarriorcito.plugins.zoocraft;
+package com.elwarriorcito.plugins.zoocraft.core;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
