@@ -1,12 +1,12 @@
-package com.elwarriorcito.plugins.zoocraft.mobs;
+package com.elwarriorcito.plugins.zoocraft.Mobs;
 
-import com.elwarriorcito.plugins.zoocraft.mobs.api.CustomEntityProperties;
 import org.bukkit.entity.Cow;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
+import com.elwarriorcito.plugins.zoocraft.Mobs.Api.CustomEntityProperties;
 
 public class CustomCow implements Listener {
 

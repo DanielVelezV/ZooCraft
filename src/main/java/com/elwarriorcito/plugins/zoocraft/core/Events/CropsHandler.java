@@ -1,5 +1,8 @@
 package com.elwarriorcito.plugins.zoocraft.core.Events;
 
+import com.elwarriorcito.plugins.zoocraft.core.Enums.RarityEnum;
+import com.elwarriorcito.plugins.zoocraft.core.Models.CropModel;
+import com.elwarriorcito.plugins.zoocraft.core.ZooCraft;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -11,17 +14,27 @@ import org.bukkit.inventory.EquipmentSlot;
 
 public class CropsHandler implements Listener {
 
+    private ZooCraft Main;
+    public CropsHandler(ZooCraft Main){
+        this.Main = Main;
+    }
+
     @EventHandler
     public void onPlayerPlantCrop(PlayerInteractEvent e){
         Player p = e.getPlayer(); //Get the player
-
+        CropModel crop = new CropModel("Wheat Golden Crop", RarityEnum.Common, 20, Main);
         if (e.getHand() == EquipmentSlot.OFF_HAND) return; //This is to avoid double calls
 
         if (e.getAction() == Action.RIGHT_CLICK_BLOCK && //If its clicking a Block
-            p.getInventory().getItemInMainHand().getType().equals(Material.WHEAT_SEEDS)){ //If it is WheatSeeds
+            p.getInventory().getItemInMainHand().getType().equals(Material.WHEAT_SEEDS)) { //If it is WheatSeeds
             Location clickedLocation = e.getClickedBlock().getLocation(); //Get the location on the clicked block
 
-            p.getWorld().getBlockAt(clickedLocation.add(0, 1, 0)).setType(Material.PLAYER_HEAD); //add 1 on Y axis so it puts on top of the block
+
+            crop.spawnCrop(clickedLocation, p);
+        }
+        if (e.getAction() == Action.RIGHT_CLICK_BLOCK &&
+                p.getInventory().getItemInMainHand().getType().equals(Material.REDSTONE_BLOCK)){
+            crop.stopParticles();
         }
 
     }
