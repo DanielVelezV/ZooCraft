@@ -41,11 +41,12 @@ public class CropModel {
                 loc.getWorld().spawnParticle(Particle.HEART, loc.getX() + 1, loc.getY(), loc.getZ() + 0.5, 1);
                 loc.getWorld().spawnParticle(Particle.HEART, loc.getX(), loc.getY(), loc.getZ() + 1, 1);
             }
-        }, 5L, 10L );
+        }, 0L, 40L );
 
         HologramModel holo = new HologramModel();
         Location holoLocation = loc.clone();
-        holo.createLine(holoLocation.add(0.5, -0.5, 0.5), Name);
+
+        holo.createLine(holoLocation.add(0.5, -0.2, 0.5), Name);
         holo.addLine("&2GrowTime: " + GrowTime);
         holo.addLine("&4Rarity: ");
 

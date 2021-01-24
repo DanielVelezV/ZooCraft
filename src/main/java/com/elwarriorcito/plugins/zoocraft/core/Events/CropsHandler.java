@@ -1,5 +1,6 @@
 package com.elwarriorcito.plugins.zoocraft.core.Events;
 
+import com.elwarriorcito.plugins.zoocraft.Items.ZooItems;
 import com.elwarriorcito.plugins.zoocraft.core.Enums.RarityEnum;
 import com.elwarriorcito.plugins.zoocraft.core.Models.CropModel;
 import com.elwarriorcito.plugins.zoocraft.core.ZooCraft;
@@ -26,7 +27,10 @@ public class CropsHandler implements Listener {
         if (e.getHand() == EquipmentSlot.OFF_HAND) return; //This is to avoid double calls
 
         if (e.getAction() == Action.RIGHT_CLICK_BLOCK && //If its clicking a Block
-            p.getInventory().getItemInMainHand().getType().equals(Material.WHEAT_SEEDS)) { //If it is WheatSeeds
+            p.getInventory().getItemInMainHand().getItemMeta().getDisplayName().
+                    equals(ZooItems.ZooGoldCropGet().getItemMeta().getDisplayName()) ) { //If it is the ZooItem GoldCrop
+
+
             Location clickedLocation = e.getClickedBlock().getLocation(); //Get the location on the clicked block
 
 

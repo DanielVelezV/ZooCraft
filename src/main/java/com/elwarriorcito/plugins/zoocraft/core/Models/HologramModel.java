@@ -23,7 +23,7 @@ public class HologramModel {
        firstLine.setCustomNameVisible(true); //Custom name visibility
        firstLine.setGravity(false); //No gravity
        firstLine.setInvisible(true); //Invisible
-       firstLine.setInvulnerable(true); //Invulnerability (Not working somehow)
+       firstLine.setInvulnerable(true); //Invulnerability (Only works on Survival Mode)
        Linescount++; //Add 1 to the lines count
        lines.put(Linescount, firstLine); //add this line to the line list
     }
