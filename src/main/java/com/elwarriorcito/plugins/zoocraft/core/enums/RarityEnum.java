@@ -1,4 +1,4 @@
-package com.elwarriorcito.plugins.zoocraft.core.Enums;
+package com.elwarriorcito.plugins.zoocraft.core.enums;
 
 public enum RarityEnum {
 

@@ -1,4 +1,4 @@
-package com.elwarriorcito.plugins.zoocraft.core.Models;
+package com.elwarriorcito.plugins.zoocraft.core.models;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -45,6 +45,23 @@ public class HologramModel {
         if (lines.get(lineId) != null){
             lines.get(lineId).remove();
         }
+    }
+
+    public void editLine(int lineId, String newLine){
+        if (lines.get(lineId) !=null)
+            lines.get(lineId).setCustomName(c(newLine));
+
+    }
+
+    public String getLine(int lineId){
+        if (lines.get(lineId) !=null)
+            return lines.get(lineId).getCustomName();
+        else
+            return null;
+    }
+
+    public void removeHolo(){
+        lines.forEach((k, v) -> v.remove());
     }
 
     public int getLinescount(){return Linescount;} //Get how many lines this Hologram have
