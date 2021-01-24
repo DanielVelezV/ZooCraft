@@ -24,7 +24,7 @@ public class CropsHandler implements Listener {
     @EventHandler
     public void onPlayerPlantCrop(PlayerInteractEvent e){
         Player p = e.getPlayer(); //Get the player
-        CropModel crop = new CropModel("&6&lWheat Golden Crop", RarityEnum.Common, 20, Main);
+        CropModel crop = new CropModel("&6&lWheat Golden Crop", RarityEnum.Common, 50, Main, Material.WHEAT);
         if (e.getHand() == EquipmentSlot.OFF_HAND) return; //This is to avoid double calls
 
         if (e.getAction() == Action.RIGHT_CLICK_BLOCK && //If its clicking a Block
@@ -35,8 +35,8 @@ public class CropsHandler implements Listener {
             Location clickedLocation = e.getClickedBlock().getLocation(); //Get the location on the clicked block
 
 
-            crop.spawnCrop(clickedLocation, p);
-            ZooCraft.plantedCrops.add(crop);
+            crop.spawnCrop(clickedLocation, p); //Spawn the crop
+            ZooCraft.plantedCrops.add(crop); //Add the crop to the plante crops;
         }
         if (e.getAction() == Action.RIGHT_CLICK_BLOCK &&
                 p.getInventory().getItemInMainHand().getType().equals(Material.REDSTONE_BLOCK)){

@@ -21,8 +21,8 @@ public final class ZooCraft extends JavaPlugin {
         // Plugin startup logic
         getServer().getPluginManager().registerEvents(new CropsHandler(this), this);
         getServer().getPluginManager().registerEvents(new CustomCow(), this);
-        getCommand("getGoldCrop").setExecutor(new GetGoldenCrop());
-        getCommand("getCropInfo").setExecutor(new GetPlantedCrops());
+        getCommand("getGoldCrop").setExecutor(new GetGoldenCrop()); //This will give you the Crop Item
+        getCommand("getCropInfo").setExecutor(new GetPlantedCrops()); //This will give you info about all planted crops
     }
 
 
