@@ -1,6 +1,6 @@
 name: ZooCraft
 version: ${project.version}
-main: com.elwarriorcito.plugins.zoocraft.ZooCraft
+main: com.elwarriorcito.plugins.zoocraft.core.ZooCraft
 api-version: 1.16
 authors: [ ElWarriorcito, AlPasa, ProGramer26000 ]
 description: A Zoo plugin for a Minecraft server
