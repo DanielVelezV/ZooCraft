@@ -11,9 +11,7 @@ public class CustomMob {
 
     //need to add item drops
     public void dropItems(ConfigEntityType entityType) {
-        for (ItemStack itemStack: is  ) {
 
-        }
     }
 
     public void assignID() {
