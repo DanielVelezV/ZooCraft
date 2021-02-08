@@ -1,19 +1,14 @@
 package com.elwarriorcito.plugins.zoocraft.core;
 
-import com.elwarriorcito.plugins.zoocraft.commands.GetGoldenCrop;
-import com.elwarriorcito.plugins.zoocraft.commands.GetPlantedCrops;
-<<<<<<< HEAD
+
+
 import com.elwarriorcito.plugins.zoocraft.core.events.CropsHandler;
-import com.elwarriorcito.plugins.zoocraft.core.models.CropModel;
-import com.elwarriorcito.plugins.zoocraft.mobs.CustomCow;
-import com.elwarriorcito.plugins.zoocraft.mobs.api.ConfigEntityType;
+import com.elwarriorcito.plugins.zoocraft.mobs.api.MobType;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-=======
+
 import com.elwarriorcito.plugins.zoocraft.core.models.CropSuperModel;
-import com.elwarriorcito.plugins.zoocraft.mobs.CustomCow;
-import com.elwarriorcito.plugins.zoocraft.core.events.CropsHandler;
->>>>>>> e8c3728653310fc125cffd66576f05e5547ecb8a
+
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -37,10 +32,17 @@ public final class ZooCraft extends JavaPlugin {
 
     public static ZooCraft plugin;
 
-    private String cow = String.valueOf(MobConfig.get(String.valueOf(ConfigEntityType.COW)));
-    private String chicken = String.valueOf(MobConfig.get(String.valueOf(ConfigEntityType.CHICKEN)));
-    private String sheep = String.valueOf(MobConfig.get(String.valueOf(ConfigEntityType.SHEEP)));
-    private String pig = String.valueOf(MobConfig.get(String.valueOf(ConfigEntityType.PIG)));
+    private String cow = String.valueOf(MobConfig.get(String.valueOf(MobType.COW)));
+    private String chicken = String.valueOf(MobConfig.get(String.valueOf(MobType.CHICKEN)));
+    private String sheep = String.valueOf(MobConfig.get(String.valueOf(MobType.SHEEP)));
+    private String pig = String.valueOf(MobConfig.get(String.valueOf(MobType.PIG)));
+    private String horse = String.valueOf(MobConfig.get(String.valueOf(MobType.HORSE)));
+    private String dog = String.valueOf(MobConfig.get(String.valueOf(MobType.DOG)));
+
+    //returns an instance of this class/plugin
+    public static ZooCraft getInstance() {
+        return plugin;
+    }
 
 
     @Override
@@ -50,10 +52,11 @@ public final class ZooCraft extends JavaPlugin {
         plugin = this;
 
         getServer().getPluginManager().registerEvents(new CropsHandler(this), this);
-        getServer().getPluginManager().registerEvents(new CustomCow(), this);
-<<<<<<< HEAD
-        getCommand("getGoldCrop").setExecutor(new GetGoldenCrop());
-        getCommand("getCropInfo").setExecutor(new GetPlantedCrops());
+
+
+        //getCommand("getGoldCrop").setExecutor(new GetGoldenCrop());
+        //getCommand("getCropInfo").setExecutor(new GetPlantedCrops());
+
 
         //Create the MobData file
         MobDataYML = new File(this.getDataFolder() + "/MobData.yml");
@@ -69,10 +72,7 @@ public final class ZooCraft extends JavaPlugin {
     public void onDisable() {
         saveYmlFile(MobConfig, MobConfigYML);
         saveYmlFile(MobData, MobDataYML);
-=======
-        getCommand("getGoldCrop").setExecutor(new GetGoldenCrop()); //This will give you the Crop Item
-        getCommand("getCropInfo").setExecutor(new GetPlantedCrops()); //This will give you info about all planted crops
->>>>>>> e8c3728653310fc125cffd66576f05e5547ecb8a
+
     }
 
 
@@ -101,6 +101,14 @@ public final class ZooCraft extends JavaPlugin {
         if (!MobConfig.contains(sheep)) {
             MobConfig.get(sheep + ".Default Health.Drops");
             MobConfig.set(sheep + ".Default Health", 8);
+        }
+        if (!MobConfig.contains(dog)) {
+            MobConfig.get(dog + ".Default Health.Drops");
+            MobConfig.set(dog + ".Default Health", 8);
+        }
+        if (!MobConfig.contains(horse)) {
+            MobConfig.get(horse + ".Default Health.Drops");
+            MobConfig.set(horse + ".Default Health", 25);
         }
         saveYmlFile(MobConfig, MobConfigYML);
     }

@@ -32,21 +32,11 @@ public class CustomEntityProperties {
         return breed;
     }
 
-    public void setLevel(int level) {
-        ZooCraft.MobData.set(String.valueOf(this.level), level);
-    }
     public void setItemDrops(List<ItemStack> itemDrops) {
         this.itemDrops = itemDrops;
     }
 
-    public void setBreed(String breed) {
-        ZooCraft.MobData.set(this.breed, breed);
-    }
 
-
-    public void setType(DataEntityType entityType) {
-        this.entityType = entityType;
-    }
 
     public DataEntityType getType() {
         return (DataEntityType) ZooCraft.MobData.get("ID.type");
